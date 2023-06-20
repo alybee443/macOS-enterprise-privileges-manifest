@@ -1,0 +1,190 @@
+{
+    "title": "Privileges App (corp.sap.Privileges)",
+
+    "description": "Preference settings for Privileges",
+
+    "properties": {
+        
+        "DockToggleTimeout": {
+            
+            "title": "DockToggleTimeout",
+
+            "description": "Set a fixed timeout, in minutes, for the Dock tile's Toggle Privileges command. After this time, the admin rights are removed and set back to standard user rights. A value of 0 disables the timeout and allows the user to permanently toggle privileges.",
+
+            "type": "integer"
+
+        },
+
+        "DockToggleMaxTimeout": {
+
+            "title": "DockToggleMaxTimeout",
+
+            "description": "Set a maximum timeout for the Dock tile's Toggle Privileges command. This generally works the same way as the DockToggleTimeout but allows the user to choose every timeout value up to the one specified. So if the admin would set DockToggleMaxTimeout to 20 minutes, the user may decide to set it to a value below 20 instead of being forced to use the 20 minute timeout.",
+
+            "type": "integer"
+
+        },
+
+        "EnforcePrivileges": {
+
+            "title": "EnforcePrivileges",
+
+            "description": "Enforces certain privileges. Whenever Privileges.app or the PrivilegesCLI command line tool are launched,the corresponding privileges are set. \n admin: administrator rights always set by Privileges. \n user: standard user rights are always set by Privileges. \n none: Privileges.app and the PrivilegesCLI command line tool are disabled and it is not possible to change user privileges using these tools.",
+
+            "type": "string",
+
+            "options": {
+                "enum_titles": [
+                    "admin",
+                    "user",
+                    "none"
+                    ]
+            },
+
+            "enum": [
+                "admin",
+                "user",
+                "none"
+            ]
+        },
+
+        "LimitToGroup": {
+
+            "title": "LimitToGroup",
+
+            "description": "Limits the usage of Privileges.app to the given user group.",
+
+            "type": "string"
+        },
+
+        "LimitToUser": {
+            "title": "LimitToUser",
+
+            "description": "Limits the usage of Privileges.app to the given user account. \n Note: If used with a client management system that supports variables in configuration profiles, variables like $USERNAME may be used here.",
+
+            "type": "string"
+        },
+
+        "ReasonRequired": {
+            "title": "ReasonRequired",
+
+            "description": "If ReasonRequired is set to true, the user must provide a reason for needing admin rights. \n Note: If setting ReasonRequired, the Toggle Privileges option is automatically disabled",
+
+            "type": "boolean"
+        },
+
+        "ReasonMinLength": {
+            "title": "ReasonMinLength",
+
+            "description": "(Privileges 1.5.0 and later.) If the ReasonRequired key's value is set to true, this optional key specifies the minimum number of characters the user can enter as the reason for becoming an admin. If not set, the value defaults to 10. \n The text field is limited to a maximum of 100 characters. If a value of greater than 100 is specified, the value of the ReasonMinLength key is set to the default value of 10.",
+
+            "type": "integer"
+        },
+
+        "ReasonMaxLength": {
+            "title": "ReasonMaxLength",
+
+            "description":"(Privileges 1.5.3 and later) If the ReasonRequired key's value is set to true, this optional key specifies the maximum number of characters the user can enter as the reason for becoming an admin. If not set, the value defaults to 100. If a value of greater than 100 is specified or if the ReasonMaxLength key is set to a value less than or equal to the value set for the ReasonMinLength key's value, the value of the ReasonMaxLength key is set to the default value of 100.",
+
+            "type": "integer"
+        },
+
+        "ReasonPresetList": {
+            "title": "ReasonPresetList",
+
+            "description": "",
+
+            "type": "array",
+
+            "items": {
+                "type": "string",
+                "title": "Reason"
+            }
+        },
+
+        "RemoteLogging": {
+            "title": "RemoteLogging",
+
+            "description": "(Privileges 1.5.0 and later) Server information for remote logging of Privilege usage.",
+
+            "type": "array",
+
+            "items": {
+                "type": "object",
+
+                "properties": {
+
+                    "ServerType" {
+                        "title": "ServerType",
+
+                        "type": "string",
+    
+                        "options": {
+                            "enum_titles": [
+                                "syslog"
+                            ]
+                        },
+    
+                        "enum": [
+                            "syslog"
+                        ]
+                    },
+
+                    "ServerAddress": {
+                        "title": "ServerAddress",
+
+                        "type": "string"
+                    },
+
+                    "ServerPort": {
+                        "title": "ServerPort",
+
+                        "type": "string"
+                    },
+
+                    "EnableTCP": {
+                        "title": "EnableTCP",
+
+                        "type": "boolean"
+                    },
+
+                    "SyslogOptions": {
+                        "title": "SyslogOptions",
+
+                        "type": "object",
+
+                        "properties": {
+                            "LogFacility": {
+                                "title": "LogFacility",
+
+                                "type": "integer"
+                            },
+
+                            "LogSeverity": {
+                                "title": "LogSeverity",
+
+                                "type": "integer"
+                            },
+
+                            "MaximumMessageSize": {
+                                "title": "MaximumLogMessageSize",
+
+                                "type": "integer"
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        },
+
+        "RequireAuthentication": {
+            "title": "RequireAuthentication",
+
+            "type": "boolean"
+
+        }
+
+    }
+}
